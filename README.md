@@ -8,5 +8,5 @@
 
 <h2>개발환경</h2>
 <li>Front-end: Typescript, Vue</li>
-<li>Back-end: Java, SpringBoot, PostgreSQL</li>
+<li>Back-end: Java, SpringBoot, PostgreSQL, JPA</li>
 <li>배포: AWS</li>
