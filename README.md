@@ -1,5 +1,14 @@
-# Vue 3 + TypeScript + Vite
+<h1>날씨 단기예보 알림</h1>
+<hr>
+<p>비가 오기 전에 알림을 보내드립니다.</p>
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+<h2>프로젝트 소개</h2>
+<hr>
+<li>회원가입 후 본인의 지역을 등록하면 강수확률이 60% 이상일 때 알림을 보내드립니다.</li>
+<li>현재 위치의 강수확률을 볼 수 있습니다.</li>
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+<h2>개발환경</h2>
+<hr>
+<li>Front-end: Typescript, Vue</li>
+<li>Back-end: Java, SpringBoot, PostgreSQL</li>
+<li>배포: AWS</li>
