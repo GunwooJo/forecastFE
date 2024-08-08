@@ -35,6 +35,12 @@
       //날씨 데이터 요청
       getForecastData(regionName: string):void {
         alert(`${regionName}으로 날씨 데이터 요청!`)
+      },
+      login() {
+        this.$router.push({name: 'LoginPage'});
+      },
+      signup() {
+        this.$router.push({name: 'SignupPage'});
       }
     }
   }
@@ -67,7 +73,25 @@
     </div>
 
     <div class="image_container">
-      <img id="user_icon" src="../assets/userIcon.png" alt="회원로고">
+      <v-menu>
+        <template v-slot:activator="{ props }">
+          <img
+              id="user_icon"
+              src="../assets/userIcon.png"
+              alt="회원로고"
+              v-bind="props"
+              style="cursor: pointer"
+          />
+        </template>
+        <v-list>
+          <v-list-item class="menu-item" @click="login">
+            <v-list-item-title>로그인</v-list-item-title>
+          </v-list-item>
+          <v-list-item class="menu-item" @click="signup">
+            <v-list-item-title>회원가입</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </div>
   </div>
 </template>
@@ -114,6 +138,11 @@
 
 #user_icon {
   width: 2rem;
+}
+
+.menu-item:hover {
+  background-color: #f5f5f5;
+  cursor: pointer;
 }
 
 /* 미디어 쿼리를 활용한 반응형 디자인 */
