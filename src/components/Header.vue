@@ -43,7 +43,7 @@
 <template>
   <div class="header">
     <div id="main_logo">
-      <img id="weather_icon" src="../assets/weatherIcon.png">
+      <img id="weather_icon" src="../assets/weatherIcon.png" alt="메인로고">
       <h1 id="title">날씨알리미</h1>
     </div>
 
@@ -51,6 +51,9 @@
       <v-text-field
           v-model="searchQuery"
           label="지역 검색"
+          hide-details
+          clearable
+          dense
       ></v-text-field>
       <v-list v-if="filteredRegions.length > 0" class="search-results">
         <v-list-item
@@ -63,43 +66,72 @@
       </v-list>
     </div>
 
-
-    <div>로그인</div>
+    <div class="image_container">
+      <img id="user_icon" src="../assets/userIcon.png" alt="회원로고">
+    </div>
   </div>
 </template>
 
 <style scoped>
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* 헤더 요소들을 수직 중앙 정렬 */
+  padding: 1rem; /* padding 값을 rem 단위로 변경 */
+  width: 100%; /* 헤더 너비를 화면에 맞춰 유동적으로 변경 */
+  box-sizing: border-box; /* padding 값을 content 영역에 포함 */
+}
+
+.header > #main_logo > #weather_icon {
+  width: 2rem; /* 이미지 크기를 rem 단위로 변경 */
+  margin-right: 0.5rem;
+}
+
+.header > #main_logo > #title {
+  font-size: 1.2rem; /* 폰트 크기를 rem 단위로 변경 */
+}
+
+.search-container {
+  flex-grow: 1; /* 검색 영역이 남는 공간을 모두 차지하도록 설정 */
+  margin: 0 1rem; /* 검색 영역 좌우에 margin 추가 */
+}
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  background-color: white;
+  border: 1px solid #ccc;
+  max-height: 200px; /* 검색 결과 최대 높이 제한 */
+  overflow-y: auto; /* 검색 결과가 넘칠 경우 스크롤 */
+}
+
+.image_container {
+  width: 2rem; /* 이미지 크기를 rem 단위로 변경 */
+}
+
+#user_icon {
+  width: 2rem;
+}
+
+/* 미디어 쿼리를 활용한 반응형 디자인 */
+@media (max-width: 600px) {
   .header {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 100px;
-  }
-
-  .header > #main_logo > #weather_icon {
-    width: 40px;
-  }
-
-  .header > #main_logo {
-    display: flex;
-    align-items: center;
-  }
-
-  .header > #main_logo > #title {
-    margin-left: 5px;
+    flex-direction: column; /* 화면이 작을 때 요소들을 세로로 배치 */
+    align-items: flex-start; /* 요소들을 왼쪽 정렬 */
   }
 
   .search-container {
-    position: relative; /* 검색 결과를 v-text-field 아래에 배치하기 위한 기준 설정 */
-    width: 500px;
+    width: 100%;
+    margin: 1rem 0;
   }
 
   .search-results {
-    position: absolute;
-    top: 100%; /* v-text-field 바로 아래에 위치 */
-    left: 0;
+    position: static; /* 검색 결과 위치를 static으로 변경 */
     width: 100%;
-    z-index: 10; /* 다른 요소 위에 표시되도록 설정 */
-    background-color: white; /* 배경색 설정 */
-    border: 1px solid #ccc; /* 테두리 설정 */
+    max-height: none; /* 검색 결과 최대 높이 제한 해제 */
   }
+}
 </style>
