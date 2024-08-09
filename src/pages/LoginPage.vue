@@ -1,9 +1,8 @@
 <template>
   <div>
-    <h2>로그인</h2>
-    <form @submit.prevent="login">
-      <v-form v-model="valid">
+      <v-form v-model="valid" @submit.prevent="login">
         <v-container>
+          <h2>로그인</h2>
           <v-row>
             <v-col
                 cols="12"
@@ -16,7 +15,9 @@
                   required
               ></v-text-field>
             </v-col>
+          </v-row>
 
+          <v-row>
             <v-col
                 cols="12"
                 md="4"
@@ -31,16 +32,17 @@
               ></v-text-field>
             </v-col>
           </v-row>
-        </v-container>
 
-        <v-btn type="submit" :disabled="!valid">로그인</v-btn>
+          <v-btn type="submit" :disabled="!valid">로그인</v-btn>
+        </v-container>
       </v-form>
-    </form>
+
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from "vue";
+import axios from "axios";
 
 export default defineComponent({
   data() {
@@ -59,11 +61,33 @@ export default defineComponent({
     };
   },
   methods: {
-    login() {
-      alert('로그인 완료')
-      console.log(this.email, this.password);
-      // 로그인 API 호출 등 로그인 로직 구현
-      // 성공 시 this.$router.push('/home') 등으로 페이지 이동
+    async login() {
+      try {
+        await axios.post(`${import.meta.env.VITE_BACKEND_URL}/user/login`, {
+          email: this.email,
+          password: this.password
+        });
+        this.$router.push('/');
+
+      } catch (error) {
+        console.error(error);
+
+        if(error.response) {
+          // 요청이 전송되었고, 서버는 2xx 외의 상태 코드로 응답한 경우.
+          if (error.response.status === 400) {
+            alert('존재하지 않는 사용자거나 비밀번호가 틀렸어요.');
+
+          } else if(error.response.status === 500) {
+            alert('서버 에러가 발생했어요.');
+
+          } else {
+            alert('에러가 발생했어요.');
+          }
+
+        } else {
+          alert('문제가 발생했어요. 잠시 후 다시 시도해주세요.');
+        }
+      }
     }
   }
 });
