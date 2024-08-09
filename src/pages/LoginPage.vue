@@ -72,7 +72,7 @@ export default defineComponent({
       } catch (error) {
         console.error(error);
 
-        if(error.response) {
+        if(axios.isAxiosError(error) && error.response) {
           // 요청이 전송되었고, 서버는 2xx 외의 상태 코드로 응답한 경우.
           if (error.response.status === 400) {
             alert('존재하지 않는 사용자거나 비밀번호가 틀렸어요.');
