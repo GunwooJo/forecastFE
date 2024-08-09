@@ -1,6 +1,7 @@
 <script lang="ts">
   import Header from "./components/Header.vue";
   import axios from 'axios';
+  import {defineComponent} from "vue";
 
   interface Region {
     name: string;
@@ -8,7 +9,7 @@
     yPos: number;
   }
 
-  export default {
+  export default defineComponent({
     components: {Header},
     data() {
       return {
@@ -30,14 +31,15 @@
         }
       }
     },
-  }
+  })
 </script>
 
 <template>
-  <div id="app">
-    <Header :regions="regions"/>
-    <router-view/>
-  </div>
+  <Header :regions="regions"/>
+  <main>
+    <RouterView/>
+  </main>
+
 </template>
 
 <style scoped>
