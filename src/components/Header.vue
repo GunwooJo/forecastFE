@@ -1,11 +1,13 @@
 <script lang="ts">
+  import {defineComponent} from "vue";
+
   interface Region {
     name: string;
     xPos: number;
     yPos: number;
   }
 
-  export default {
+  export default defineComponent ({
     props: {
       regions: {
         type: Array as () => Region[],
@@ -47,7 +49,7 @@
         alert('로그아웃 로직.');
       }
     }
-  }
+  })
 </script>
 
 <template>
