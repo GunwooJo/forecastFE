@@ -39,12 +39,6 @@
       getForecastData(regionName: string):void {
         alert(`${regionName}으로 날씨 데이터 요청!`)
       },
-      login() {
-        this.$router.push({name: 'LoginPage'});
-      },
-      signup() {
-        this.$router.push({name: 'SignUpPage'});
-      },
       logout() {
         alert('로그아웃 로직.');
       }
@@ -93,14 +87,20 @@
           />
         </template>
         <v-list>
-          <v-list-item v-if="!isLoggedIn" class="menu-item" @click="login">
-            <v-list-item-title>로그인</v-list-item-title>
+          <v-list-item v-if="!isLoggedIn" class="menu-item" >
+            <router-link class="router-link" to="/user/login">
+              <v-list-item-title>로그인</v-list-item-title>
+            </router-link>
           </v-list-item>
+
           <v-list-item v-if="isLoggedIn" class="menu-item" @click="logout">
             <v-list-item-title>로그아웃</v-list-item-title>
           </v-list-item>
-          <v-list-item class="menu-item" @click="signup">
-            <v-list-item-title>회원가입</v-list-item-title>
+
+          <v-list-item class="menu-item">
+            <router-link class="router-link" to="/user/signup">
+              <v-list-item-title>회원가입</v-list-item-title>
+            </router-link>
           </v-list-item>
         </v-list>
       </v-menu>
@@ -154,6 +154,10 @@
 
 #user_icon {
   width: 2rem;
+}
+
+.router-link {
+  text-decoration: none;
 }
 
 .menu-item:hover {
