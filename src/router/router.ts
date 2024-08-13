@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import LoginPage from "../pages/LoginPage.vue";
-import practice from "../components/practice.vue";
+import SignUpPage from "../pages/SignUpPage.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -11,9 +11,9 @@ const router = createRouter({
             component: LoginPage
         },
         {
-            path: '/practice',
-            name: 'PracticePage',
-            component: practice
+            path: '/user/signup',
+            name: 'SignUpPage',
+            component: SignUpPage
         }
     ]
 });

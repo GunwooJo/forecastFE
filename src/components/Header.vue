@@ -40,7 +40,7 @@
         this.$router.push({name: 'LoginPage'});
       },
       signup() {
-        this.$router.push({name: 'SignupPage'});
+        this.$router.push({name: 'SignUpPage'});
       }
     }
   }
