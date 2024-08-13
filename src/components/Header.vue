@@ -48,7 +48,7 @@
 
 <template>
   <div class="header">
-    <div id="main_logo">
+    <div id="main_logo" @click="this.$router.push('/');">
       <img id="weather_icon" src="../assets/weatherIcon.png" alt="메인로고">
       <h1 id="title">날씨알리미</h1>
     </div>
@@ -104,6 +104,10 @@
   padding: 1rem; /* padding 값을 rem 단위로 변경 */
   width: 100%; /* 헤더 너비를 화면에 맞춰 유동적으로 변경 */
   box-sizing: border-box; /* padding 값을 content 영역에 포함 */
+}
+
+#main_logo {
+  cursor: pointer;
 }
 
 .header > #main_logo > #weather_icon {
