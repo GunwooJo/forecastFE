@@ -15,7 +15,8 @@
     data() {
       return {
         searchQuery: '',
-        filteredRegions: [] as Region[]
+        filteredRegions: [] as Region[],
+        isLoggedIn: false,
       };
     },
     watch: {
@@ -41,6 +42,9 @@
       },
       signup() {
         this.$router.push({name: 'SignUpPage'});
+      },
+      logout() {
+        alert('로그아웃 로직.');
       }
     }
   }
@@ -84,8 +88,11 @@
           />
         </template>
         <v-list>
-          <v-list-item class="menu-item" @click="login">
+          <v-list-item v-if="!isLoggedIn" class="menu-item" @click="login">
             <v-list-item-title>로그인</v-list-item-title>
+          </v-list-item>
+          <v-list-item v-if="isLoggedIn" class="menu-item" @click="logout">
+            <v-list-item-title>로그아웃</v-list-item-title>
           </v-list-item>
           <v-list-item class="menu-item" @click="signup">
             <v-list-item-title>회원가입</v-list-item-title>
