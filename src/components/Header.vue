@@ -51,12 +51,14 @@
 </script>
 
 <template>
+  <!--메인로고-->
   <div class="header">
     <div id="main_logo" @click="this.$router.push('/');">
       <img id="weather_icon" src="../assets/weatherIcon.png" alt="메인로고">
       <h1 id="title">날씨알리미</h1>
     </div>
 
+    <!--검색창-->
     <div class="search-container">
       <v-text-field
           v-model="searchQuery"
@@ -76,6 +78,7 @@
       </v-list>
     </div>
 
+    <!-- 회원로고-->
     <div class="image_container">
       <v-menu>
         <template v-slot:activator="{ props }">
