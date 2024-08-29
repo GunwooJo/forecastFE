@@ -1,5 +1,6 @@
 <script lang="ts">
 import {defineComponent} from 'vue'
+import axios from "axios";
 
 interface locationData {
   lat: number,
@@ -27,10 +28,21 @@ export default defineComponent({
       console.log(locationData);
       this.x = locationData.x;
       this.y = locationData.y;
-    });
 
+      this.fetchShortForecastData();
+    });
   },
   methods: {
+    //단기예보 조회 api
+    async fetchShortForecastData() {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/short-forecast/api`, {
+        params: {
+          x_pos: this.x,
+          y_pos: this.y
+        }
+      })
+      console.log(response);
+    },
     //code : "toXY"(위경도->좌표, v1:위도, v2:경도), "toLL"(좌표->위경도,v1:x, v2:y)
     locationConverter(code: string, v1: number, v2: number): locationData {
       const RE = 6371.00877; // 지구 반경(km)
